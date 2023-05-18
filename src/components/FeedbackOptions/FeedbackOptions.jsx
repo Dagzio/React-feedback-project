@@ -1,20 +1,29 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { Button, ButtonWrapper } from './FeedbackOptions.styled';
 import PropTypes from 'prop-types';
 
-const FeedbackOptions = ({options, onLeaveFeedback}) => {
-    return (
-        <ButtonWrapper>
-            {options.map(option => {
-               return <Button type="button" onClick={onLeaveFeedback} name={option} key={nanoid(4)}>{option}</Button>
-            })}
-        </ButtonWrapper>
-    );
+const FeedbackOptions = ({ buttonNames, onLeaveFeedback }) => {
+  return (
+    <ButtonWrapper>
+      {buttonNames.map(buttonName => {
+        return (
+          <Button
+            type="button"
+            onClick={onLeaveFeedback}
+            name={buttonName}
+            key={nanoid(4)}
+          >
+            {buttonName}
+          </Button>
+        );
+      })}
+    </ButtonWrapper>
+  );
 };
-    
+
 FeedbackOptions.propTypes = {
-    options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onLeaveFeedback: PropTypes.func
+  buttonNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
-    
+
 export default FeedbackOptions;
